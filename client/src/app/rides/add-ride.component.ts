@@ -31,6 +31,7 @@ export class AddRideComponent implements OnInit {
 
   public loggedInUser: User = JSON.parse(localStorage.user);
 
+
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService, private fb: FormBuilder) {
 
@@ -54,8 +55,13 @@ export class AddRideComponent implements OnInit {
   };
 
   addRide(): void {
+    // var userId = this.loggedInUser._id;
+    var userName = this.loggedInUser.name;
+    // var userPhone = this.loggedInUser.phone;
+    // var userEmail = this.loggedInUser.email;
+    this.rideDriver = userName;
     const newRide: Ride = {_id: '',
-      driver: this.loggedInUser,
+      driver: this.rideDriver,
       notes: this.rideNotes,
       seatsAvailable: Number(this.rideSeats),
       origin: this.rideOrigin,
@@ -74,7 +80,7 @@ export class AddRideComponent implements OnInit {
         err => {
           // This should probably be turned into some sort of meaningful response.
           console.log('There was an error adding the ride.');
-          console.log('The newRide or dialogResult was ' + newRide);
+          console.log('The newRide or dialogResult was ' + newRide.driver);
           console.log('The error was ' + JSON.stringify(err));
         });
       this.refreshRides();

@@ -1,5 +1,6 @@
 package umm3601.ride;
 
+import com.google.gson.JsonObject;
 import org.bson.Document;
 import spark.Request;
 import spark.Response;
@@ -7,6 +8,7 @@ import spark.Response;
 import java.text.DateFormatSymbols;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
 
 public class RideRequestHandler {
 
@@ -87,16 +89,17 @@ public class RideRequestHandler {
 
     Document newRide = Document.parse(req.body());
 
-    System.out.println(newRide);
+    System.out.println("91:  "+ newRide);
+    System.out.println(Document.parse(newRide.getString("driver")));
 
-    Document driver = Document.parse(newRide.getString("driver"));
+    String driver = newRide.getString("driver");
     String notes = newRide.getString("notes");
     int seatsAvailable = newRide.getInteger("seatsAvailable");
     String origin = newRide.getString("origin");
     String destination = newRide.getString("destination");
     String departureDate = parseDate(newRide.getString("departureDate"));
     String departureTime = parseTime(newRide.getString("departureTime"));
-
+    System.out.println(driver);
     System.err.println("Adding new ride [driver=" + driver + ", notes=" + notes + ", seatsAvailable=" + seatsAvailable
       + ", origin=" + origin + ", destination=" + destination + ", departureTime=" + departureTime + ", departureDate="
       + departureDate + ']');
