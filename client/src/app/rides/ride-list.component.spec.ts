@@ -24,7 +24,7 @@ describe('Ride list', () => {
       getRides: () => Observable.of([
         {
           _id: 'chris_id',
-          driver: 'Chris',
+          driver: { name: 'Chris' },
           notes: 'These are Chris\'s ride notes',
           seatsAvailable: 3,
           origin: 'UMM',
@@ -34,7 +34,7 @@ describe('Ride list', () => {
         },
         {
           _id: 'dennis_id',
-          driver: 'Dennis',
+          driver: { name: 'Dennis' },
           notes: 'These are Dennis\'s ride notes',
           seatsAvailable: 3,
           origin: 'Caribou Coffee',
@@ -44,7 +44,7 @@ describe('Ride list', () => {
         },
         {
           _id: 'agatha_id',
-          driver: 'Agatha',
+          driver: { name: 'Agatha' },
           notes: 'These are Agatha\'s ride notes',
           seatsAvailable: 6,
           origin: 'UMM',
@@ -76,11 +76,11 @@ describe('Ride list', () => {
   });
 
   it('contains a ride with driver \'Chris\'', () => {
-    expect(rideList.rides.some((ride: Ride) => ride.driver === 'Chris')).toBe(true);
+    expect(rideList.rides.some((ride: Ride) => ride.driver.name === 'Chris')).toBe(true);
   });
 
   it('contain a ride with driver \'Dennis\'', () => {
-    expect(rideList.rides.some((ride: Ride) => ride.driver === 'Dennis')).toBe(true);
+    expect(rideList.rides.some((ride: Ride) => ride.driver.name === 'Dennis')).toBe(true);
   });
 
   it('has two rides that have 3 available seats', () => {
@@ -113,7 +113,7 @@ describe('Ride list', () => {
 
 //  Does not cotain certain fields
   it('doesn\'t contain a ride with driver \'Dilbert\'', () => {
-    expect(rideList.rides.some((ride: Ride) => ride.driver === 'Dilbert')).toBe(false);
+    expect(rideList.rides.some((ride: Ride) => ride.driver.name === 'Dilbert')).toBe(false);
   });
 
   it('doesn\'t contain a ride with origin \'The Circus\'', () => {

@@ -8,18 +8,6 @@
         <mat-card-content class="addARideContent">
 
           <mat-form-field>
-            <input name="driverField" matInput #input id="driverID" placeholder="Driver"
-                   required [(ngModel)]="rideDriver" formControlName="driver">
-            <mat-error *ngFor="let validation of add_ride_validation_messages.driver">
-              <mat-error class="error-message"
-                         *ngIf="addRideForm.get('driver').hasError(validation.type) &&
-                       (addRideForm.get('driver').dirty || addRideForm.get('driver').touched)">
-                {{validation.message}}
-              </mat-error>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
             <input type="number" class="inputRideInfo" matInput #input id="seatsAvailableField" placeholder="Seats Available"
                    required [(ngModel)]="rideSeats" formControlName="seatsAvailable">
             <mat-error *ngFor="let validation of add_ride_validation_messages.seatsAvailable">

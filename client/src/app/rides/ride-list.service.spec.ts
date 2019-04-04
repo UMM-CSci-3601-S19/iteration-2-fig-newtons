@@ -10,7 +10,12 @@ describe('Ride list service: ', () => {
   const testRides: Ride[] = [
     {
       _id: 'chris_id',
-      driver: 'Chris',
+      driver: {
+        _id: '',
+        name: 'Chris',
+        phone: '',
+        email: ''
+      },
       notes: 'These are Chris\'s ride notes',
       seatsAvailable: 3,
       origin: 'UMM',
@@ -20,7 +25,12 @@ describe('Ride list service: ', () => {
     },
     {
       _id: 'dennis_id',
-      driver: 'Dennis',
+      driver: {
+        _id: '',
+        name: 'Dennis',
+        phone: '',
+        email: ''
+      },
       notes: 'These are Dennis\'s ride notes',
       seatsAvailable: 3,
       origin: 'Caribou Coffee',
@@ -30,7 +40,12 @@ describe('Ride list service: ', () => {
     },
     {
       _id: 'agatha_id',
-      driver: 'Agatha',
+      driver: {
+        _id: '',
+        name: 'Agatha',
+        phone: '',
+        email: ''
+      },
       notes: 'These are Agatha\'s ride notes',
       seatsAvailable: 6,
       origin: 'UMM',
@@ -90,7 +105,12 @@ describe('Ride list service: ', () => {
     const ride_id = 'ride_id';
     const newRide: Ride = {
       _id: 'ride_id',
-      driver: 'Jesse',
+      driver: {
+        _id: '',
+        name: 'Jesse',
+        phone: '',
+        email: ''
+      },
       seatsAvailable: 72,
       origin: 'UMM',
       destination: 'Alexandria',

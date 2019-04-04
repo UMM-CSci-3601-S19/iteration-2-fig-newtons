@@ -4,6 +4,7 @@ import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
 import {RideListComponent} from "./ride-list.component";
 import {RideListService} from "./ride-list.service";
 import {Observable} from "rxjs/Observable";
+import {User} from "../users/user";
 
 @Component({
   selector: 'add-ride.component',
@@ -28,17 +29,14 @@ export class AddRideComponent implements OnInit {
   public rideDepartureDate: string;
   public rideDepartureTime: string;
 
+  public loggedInUser: User = JSON.parse(localStorage.user);
+
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService, private fb: FormBuilder) {
 
   }
 
   add_ride_validation_messages = {
-    'driver': [
-      {type: 'required', message: 'Please enter your name'},
-      {type: 'minlength', message: 'Please enter your full name'},
-      {type: 'pattern', message: 'Please enter a valid name'}
-    ],
 
     'seatsAvailable': [
       {type: 'required', message: 'Please specify how many seats you\'re offering'},
@@ -57,7 +55,7 @@ export class AddRideComponent implements OnInit {
 
   addRide(): void {
     const newRide: Ride = {_id: '',
-      driver: this.rideDriver,
+      driver: this.loggedInUser,
       notes: this.rideNotes,
       seatsAvailable: Number(this.rideSeats),
       origin: this.rideOrigin,
@@ -94,11 +92,6 @@ export class AddRideComponent implements OnInit {
 
   createForm() {
     this.addRideForm = this.fb.group({
-      driver: new FormControl('driver', Validators.compose([
-        Validators.required,
-        Validators.minLength(2),
-        Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?')
-      ])),
 
       seatsAvailable: new FormControl('seatsAvailable', Validators.compose([
         Validators.required,

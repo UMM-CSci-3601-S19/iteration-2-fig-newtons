@@ -14,7 +14,7 @@
     </button>
     <mat-divider></mat-divider>
     <div *ngIf="rides; else ridesError">
-      <mat-card #elem class="rides" [id]="ride.driver" *ngFor="let ride of this.rides">
+      <mat-card #elem class="rides" [id]="ride._id.$oid" *ngFor="let ride of this.rides">
         <mat-card-header class="ride-title">
           <mat-card-title>
             <div class="departure-time">
@@ -36,7 +36,7 @@
           </div>
 
           <div id="ride-info-driver-id" class="ride-info driver">
-            {{ride.driver}} is offering this ride
+            {{ride.driver.name}} is offering this ride
           </div>
 
           <mat-divider [inset]="true" *ngIf="ride.notes"></mat-divider>

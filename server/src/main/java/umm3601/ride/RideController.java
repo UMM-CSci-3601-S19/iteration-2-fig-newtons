@@ -67,7 +67,7 @@ public class RideController {
     return DatabaseHelper.serializeIterable(matchingRides);
   }
 
-  public String addNewRide(String driver, String notes, int seatsAvailable, String origin, String destination,
+  public String addNewRide(Document driver, String notes, int seatsAvailable, String origin, String destination,
                            String departureTime, String departureDate) {
 
     Document newRide = new Document();

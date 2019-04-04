@@ -89,7 +89,7 @@ public class RideRequestHandler {
 
     System.out.println(newRide);
 
-    String driver = newRide.getString("driver");
+    Document driver = Document.parse(newRide.getString("driver"));
     String notes = newRide.getString("notes");
     int seatsAvailable = newRide.getInteger("seatsAvailable");
     String origin = newRide.getString("origin");
