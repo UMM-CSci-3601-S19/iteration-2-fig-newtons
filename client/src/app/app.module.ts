@@ -21,6 +21,11 @@ import {AddRideComponent} from './rides/add-ride.component';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+
+import { ChatComponent } from './chat/chat.component';
+import { MessageComponent } from './message/message.component';
+import { ChatService } from './chat/chat-service';
+
 import {LoginComponent} from "./login/login.component";
 import {SignupComponent} from "./signup/signup.component";
 
@@ -48,17 +53,25 @@ import {MatChipsModule} from '@angular/material/chips';
 
     AddRideComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+
+    ChatComponent,
+    MessageComponent,
 
   ],
   providers: [
-    UserListService,RideListService,AuthGuardService,AuthService,
+    UserListService,
+    RideListService,
+    ChatService,
+    AuthGuardService,
+    AuthService,
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [
     AddRideComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ChatComponent
   ],
   bootstrap: [AppComponent]
 })

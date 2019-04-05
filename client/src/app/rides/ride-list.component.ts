@@ -2,12 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {RideListService} from './ride-list.service';
 import {Ride} from './ride';
 import {Observable} from 'rxjs/Observable';
+import {ChatComponent} from "../chat/chat.component";
+import {MatDialog} from '@angular/material';
+import {ChatService} from "../chat/chat-service";
+
 
 @Component({
   selector: 'ride-list-component',
   templateUrl: 'ride-list.component.html',
   styleUrls: ['./ride-list.component.scss'],
-  providers: []
+  providers: [ChatService]
 })
 
 export class RideListComponent implements OnInit {
@@ -25,8 +29,18 @@ export class RideListComponent implements OnInit {
   public date: Date;
   public utcDate: Date;
   // Inject the RideListService into this component.
-  constructor(public rideListService: RideListService) {
- //   rideListService.addListener(this);
+  constructor(public rideListService: RideListService,
+              public dialog: MatDialog,
+              public chatService: ChatService) {
+    chatService.connectStream();
+  }
+
+  openChat(rideId: string): void {
+    const dialogRef = this.dialog.open(ChatComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+    });
+    dialogRef.componentInstance.feedId = rideId;
   }
 
   /**
